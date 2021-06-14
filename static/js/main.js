@@ -15,7 +15,7 @@ new Vue({
         search: '',
     },
     mounted: function() {
-        this.getArticles();
+        this.getArticles(this.page);
     },
     watch: {
         page: function() {
