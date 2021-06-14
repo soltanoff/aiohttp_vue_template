@@ -4,6 +4,7 @@ import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 
+import middlewares
 import settings
 from api import index, articles
 
@@ -12,6 +13,7 @@ aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIREC
 app.router.add_static(settings.STATIC_URL, path=settings.STATIC_DIRECTORY, name='static')
 index.setup_router(app)
 articles.setup_router(app)
+middlewares.setup_middlewares(app)
 
 parser = argparse.ArgumentParser(description="CRUD App: Vue.js & aiohttp")
 parser.add_argument('--host')
