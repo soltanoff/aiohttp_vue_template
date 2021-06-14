@@ -1,3 +1,5 @@
+import argparse
+
 import aiohttp_jinja2
 import jinja2
 from aiohttp import web
@@ -11,5 +13,10 @@ app.router.add_static(settings.STATIC_URL, path=settings.STATIC_DIRECTORY, name=
 app.add_routes(index.router)
 articles.setup_router(app)
 
+parser = argparse.ArgumentParser(description="CRUD App: Vue.js & aiohttp")
+parser.add_argument('--host')
+parser.add_argument('--port')
+
 if __name__ == '__main__':
-    web.run_app(app)
+    args = parser.parse_args()
+    web.run_app(app, path=args.host, port=args.port)
