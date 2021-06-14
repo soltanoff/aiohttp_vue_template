@@ -28,7 +28,7 @@ ALLOWED_HOSTS = ['*']
 Fill your database and run aiohttp development server:
 ```
 $ pip3 install -r requirements.txt
-$ python main.py --host 0.0.0.0 --port 8000
+$ python3 main.py --host 0.0.0.0 --port 8000
 ```
 
 To run with a docker compose:
