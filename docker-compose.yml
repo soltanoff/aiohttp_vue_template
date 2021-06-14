@@ -1,0 +1,24 @@
+version: "3"
+services:
+  aiohttp_vue_template:
+    image: aiohttp_vue_template
+    build:
+      context: .
+      dockerfile: dockerfiles/aiohttp_vue_template.Dockerfile
+    volumes:
+      - ./data:/aiohttp_vue_template/data
+      - ./database.db:/db/db.db
+    expose:
+      - "8000"
+    restart: unless-stopped
+    command: python main.py --host 0.0.0.0 --port 8000
+
+  nginx:
+    image: nginx:1.13.3
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/static
+    depends_on:
+      - aiohttp_vue_template
